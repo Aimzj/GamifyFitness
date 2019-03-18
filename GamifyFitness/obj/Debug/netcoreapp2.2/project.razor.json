@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\bbdnet1723\\Documents\\Visual Studio Code\\GamifyFitness\\GamifyFitness.csproj",
+  "TargetFramework": "netcoreapp2.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "MVC-2.1",
+    "LanguageVersion": "2.1",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.1"
+      }
+    ]
+  }
+}
