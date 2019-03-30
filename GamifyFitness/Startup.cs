@@ -57,7 +57,7 @@ namespace GamifyFitness
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}");
+                    template: "{controller=Home}/{action=CreateUser}/{id?}");
             });
         }
     }

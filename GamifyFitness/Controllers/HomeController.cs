@@ -14,6 +14,10 @@ namespace GamifyFitness.Controllers
         {
             return View();
         }
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
