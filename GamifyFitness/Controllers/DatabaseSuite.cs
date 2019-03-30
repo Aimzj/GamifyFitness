@@ -65,6 +65,15 @@ namespace GamifyFitness.Controllers
                 Console.WriteLine("UserId: "+reader["userId"]+"\tName: " + reader["name"] + "\tAge: " + reader["age"] + "\tLifetime calories: " + reader["lifetimeCalories"] + "\tCurrent calories: " + reader["currStoredCalories"] + "\tFriends: " + reader["friends"]);
         }
 
+        //You need to use reader.Read() to pull out info from the reader. See above for example
+        public SQLiteDataReader GetUserData(String userId)
+        {
+            string query = "select * from " + TableName + " Where userId = '" + userId + "' order by age desc";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            return reader;
+        }
+
         public String CreateFriendString(List<String> friendsList)
         {
             String friendString = "";
