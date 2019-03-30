@@ -28,6 +28,11 @@ namespace GamifyFitness.Controllers
             while(reader.Read())
                 Console.WriteLine(reader["name"] + "--------------------------------------------------------------------------------------------------");
 
+            User user = new User("Ronan", 22);
+            Console.WriteLine(user.UserId);
+            ds.CloseConnection();
+
+
             return View();
         }
         public IActionResult Index()
