@@ -27,11 +27,17 @@ namespace GamifyFitness.Controllers
                 String name = "";
                 string userId = "";
                 int age = 0;
+                int lc = 0;
+                int csc = 0;
+                String Friends = "";
                 while (reader.Read())
                 {
                     name = reader["name"].ToString();
                     age = (int)reader["age"];
                     userId = reader["userId"].ToString();
+                    lc = (int)reader["lifetimeCalories"];
+                    csc = (int)reader["currStoredCalories"];
+                    Friends = reader["friends"].ToString();
                 }
 
                 var user = new User(name, age, userId);
