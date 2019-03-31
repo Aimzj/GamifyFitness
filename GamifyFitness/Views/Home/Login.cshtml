@@ -1,57 +1,69 @@
-@using GamifyFitness.Models
+@model User
 @{
     ViewData["Title"] = "Login";
 }
 
+@section Scripts{
+    <Script src="~/lib/jquery-validation/dist/jquery.validate.js"></Script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
 <div class="jumbotron text-center">
     <h1>Gamify Fitness</h1>
-    <h2>Login</h2>
+    <h2>@ViewData["Title"]</h2>
 </div>
 
-
-
-<body>
-    <div class="container text-center">
-        <section id="loginForm">
-            @*@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    <div class="form-group">
-                        @Html.LabelFor(user => user.Email, new { @class = "col-md-2 custom-control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" />
-                            @Html.ActionLink("Register as a new user", "Register", null, new { @class = "btn btn-default" })
-                        </div>
-                    </div>
-                }*@
-
-
-            @*<div class="col-md-8 offset-md-2 pt-5">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-5 col-md-4 col-lg-3 offset-md-2 offset-lg-2">
-                    <button class="button btn-block">Login</button>
-                    <button class="button btn-block">Create New Account</button>
-                </div>*@
-        </section>
-
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="col-md-8 offset-md-2 pt-5">
+        <div class="input-group mb-3">
+            <input asp-for="Email" type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon1">
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="">
+            <div class="input-group mb-3">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                <span asp-validation-for="Password"></span>
+            </div>
+        </div>
     </div>
-</body>
+
+    <div class="col-sm-5 col-md-4 col-lg-3 offset-md-2 offset-lg-2">
+        <input type="submit" class="btn" value="Login">
+        <button class="btn">Create New User</button>
+    </div>
+</form>
+
+@*<body>
+        <div class="container text-center">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(user => user.Email, new { @class = "col-md-2 custom-control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Log in" class="btn btn-default" />
+                                @Html.ActionLink("Register as a new user", "Register", null, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
+                    }
+
+
+
+
+            </section>
+
+        </div>
+    </body>*@
 

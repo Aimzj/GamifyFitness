@@ -9,10 +9,23 @@ namespace GamifyFitness.Models
     public class User
     {
         public string UserId { get; set; }
+        [Required]
+        [Display(Name = "Username: ")]
+        public string Username { get; set; }
+        [Required]
         [Display(Name = "Name: ")]
         public string name { get; set; }
+        [Required]
+        [Display(Name= "Surname: ")]
+        public string surname{ get; set; }
+        [Required]
         [Display(Name = "Age: ")]
         public int age { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
         public float lifetimeCalories { get; set; }
         public float currCaloriesStored { get; set; }
         public List<String> Friends { get; set; }
@@ -20,7 +33,7 @@ namespace GamifyFitness.Models
 
         public User()
         {
-            this.UserId = CreateUserId();
+            //this.UserId = CreateUserId();
         }
 
         public User(String Name, int age)
@@ -64,6 +77,13 @@ namespace GamifyFitness.Models
         }
     }
 
-
+    public class LoginUser
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+    }
     
 }
