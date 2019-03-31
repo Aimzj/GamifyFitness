@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using GamifyFitness.Hubs;
 
 namespace GamifyFitness
 {
@@ -33,6 +34,7 @@ namespace GamifyFitness
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +60,15 @@ namespace GamifyFitness
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Login}/{id?}");
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Game}/{action=Index}");
+            });
+
+            app.UseSignalR(routes => 
+            {
+                routes.MapHub<GameHub>("/gamehub");
             });
         }
     }
