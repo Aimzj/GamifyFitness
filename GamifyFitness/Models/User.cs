@@ -81,9 +81,32 @@ namespace GamifyFitness.Models
     {
         [Required]
         [EmailAddress]
+        [Display(Name = "Email: ")]
+        public string Email { get; set; }
+        [Required]
+        [Display(Name = "Password: ")]
+        public string Password { get; set; }
+    }
+    public class CreateUser
+    {
+        [Required]
+        [Display(Name = "Username: ")]
+        public string Username { get; set; }
+        [Required]
+        [Display(Name = "Name: ")]
+        public string name { get; set; }
+        [Required]
+        [Display(Name = "Surname: ")]
+        public string surname { get; set; }
+        [Required]
+        [Display(Name = "Age: ")]
+        public int age { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public string ConfirmPassword { get; set; }
     }
-    
 }

@@ -35,11 +35,6 @@ namespace GamifyFitness.Controllers
             return View();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult Login(LoginUser model)
         {
@@ -48,6 +43,22 @@ namespace GamifyFitness.Controllers
                 //login the user
 
             }
+            return View();
+        }
+
+        public IActionResult CreateUser(CreateUser model)
+        {
+            if (ModelState.IsValid)
+            {
+                //create new user
+
+            }
+
+            return View();
+        }
+
+        public IActionResult Index()
+        {
             return View();
         }
 

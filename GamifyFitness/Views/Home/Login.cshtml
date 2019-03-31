@@ -16,54 +16,20 @@
 <form method="post">
     <div asp-validation-summary="ModelOnly"></div>
     <div class="col-md-8 offset-md-2 pt-5">
-        <div class="input-group mb-3">
-            <input asp-for="Email" type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon1">
-            <span asp-validation-for="Email"></span>
+        <div class="form-group">
+            <label asp-for="Email">Email: </label>
+            <input asp-for="Email" class="form-control"/>
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-        <div class="">
-            <div class="input-group mb-3">
-                <input asp-for="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-                <span asp-validation-for="Password"></span>
-            </div>
+        <div class="form-group">
+            <label asp-for="Password">Password:</label>
+            <input asp-for="Password" class="form-control" type="password"/>
+            <span asp-validation-for="Password" class="text-danger"></span>
         </div>
     </div>
 
     <div class="col-sm-5 col-md-4 col-lg-3 offset-md-2 offset-lg-2">
         <input type="submit" class="btn" value="Login">
-        <button class="btn">Create New User</button>
+        <button class="btn" asp-action="CreateUser">Create New User</button>
     </div>
 </form>
-
-@*<body>
-        <div class="container text-center">
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(user => user.Email, new { @class = "col-md-2 custom-control-label" })
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                            <div class="col-md-10">
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Log in" class="btn btn-default" />
-                                @Html.ActionLink("Register as a new user", "Register", null, new { @class = "btn btn-default" })
-                            </div>
-                        </div>
-                    }
-
-
-
-
-            </section>
-
-        </div>
-    </body>*@
-
