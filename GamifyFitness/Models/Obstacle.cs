@@ -4,5 +4,10 @@ namespace GamifyFitness.Models
     {
         public int movementSpeed {get; set;}
         public Position currentPosition {get; set;}
+
+        public Obstacle()
+        {
+            
+        }
     }
 }
