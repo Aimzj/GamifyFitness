@@ -1,0 +1,32 @@
+﻿
+@model GamifyFitness.Models.User
+
+@{ 
+    ViewData["Title"] = "User";
+}
+
+<h1 align="center">User deets</h1>
+
+<hr/>
+
+<div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.age)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model => Model.age)
+        </dd>
+
+    </dl>
+
+</div>
