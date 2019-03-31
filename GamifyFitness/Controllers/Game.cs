@@ -10,8 +10,13 @@ namespace GamifyFitness.Controllers
 {
     public class Game: Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string name)
         {
+            if (name == null)
+            {
+                return NotFound();
+            }
+            ViewData["name"] = name;
             return View();
         }
 

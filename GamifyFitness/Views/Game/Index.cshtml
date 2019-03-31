@@ -2,25 +2,30 @@
     ViewData["Title"] = "Game Page";
 }
 <div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">&nbsp;</div>
-        <div class="col-6">
-            User..........<input type="text" id="userInput" />
-            <br />
-            Message...<input type="text" id="messageInput" />
-            <input type="button" id="sendButton" value="Send Message" />
+    
+        <div class="jumbotron text-center">
+            <h3><span id="name">@ViewData["name"]</span><span id="userScore">(0)</span></h3>
         </div>
-    </div>
     <div class="row">
         <div class="col-12">
             <hr />
         </div>
     </div>
+    <style>
+        #button{
+            height: 360px;
+            background-color: #8BC34A;
+            border-radius: 10px;
+            transition: all 0.05s linear;
+            cursor: pointer;
+        }
+        #button:hover{
+            background-color:#4CAF50;
+        }
+    </style>
     <div class="row">
-        <div class="col-6">&nbsp;</div>
-        <div class="col-6">
-            <ul id="messagesList"></ul>
+        <div class="col-md-10 offset-1 ">
+            <div id="button"></div>
         </div>
     </div>
 </div>

@@ -5,9 +5,9 @@ namespace GamifyFitness.Hubs
 {
     public class GameHub: Hub
     {
-        public async Task SendMessage(string user, string message)
+        public async Task UpdateScore(string user, int score)
         {
-            await  Clients.All.SendAsync("Message", user, message);
+            await  Clients.All.SendAsync("UpdateScore", user, score);
         }
         
     }
