@@ -31,26 +31,32 @@ namespace GamifyFitness.Controllers
         {
             if (ModelState.IsValid)
             {
-               Data.Entities.User user =_repo.getUserByEmail(model.Email);
+               var user =_repo.getUserByEmail(model.Email);
                 var loggedInUser = _repo.GetLoggedInUser();
-                if (user != null && loggedInUser == null)
+                if (user != null )
                 {
                     var loginUser = new UserLogin()
                     {
                         Email = user.Email,
                         Password = model.Password,
-                        UserName = user.UserId
 
                         
                     };
+                    if(loggedInUser != null)
+                    {
+                        _repo.RemoveLoginUser(loggedInUser);
+                    }
+                   
                     _repo.AddUser(loginUser);
                     _repo.SaveAll();
-                   // return Created($"/Home", loginUser);
+                    return RedirectToAction("Index");
+
+                    // return Created($"/Home", loginUser);
                 }
-                else
+                else if(user == null)
                 {
-                    Console.WriteLine("ALREADY LOGGED IN ------------------------------------------------");
-                    return View();
+                    Console.WriteLine("You need to login ------------------------------------------------");
+                    return RedirectToAction("CreateUser");
                 }
                     
                 //return NotFound();
@@ -67,11 +73,28 @@ namespace GamifyFitness.Controllers
 
         }
 
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult CreateUser(CreateUser model)
         {
             if (ModelState.IsValid)
             {
-                //create new user
+                var user = new FitnessUser()
+                {
+                    Username = model.Username,
+                    name = model.name,
+                    surname = model.surname,
+                    age = model.age,
+                    Email = model.Email,
+                    Password = model.Password,
+                    ConfirmPassword = model.ConfirmPassword
+                };
+                _repo.AddUser(user);
+                _repo.SaveAll();
 
             }
             ModelState.Clear();

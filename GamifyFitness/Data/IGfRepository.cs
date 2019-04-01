@@ -7,7 +7,7 @@ namespace GamifyFitness.Data
     {
         IEnumerable<User> getAllUsers();
         User getUser(string userId);
-        User getUserByEmail(string email);
+        FitnessUser getUserByEmail(string email);
 
         UserLogin GetLoggedInUser();
 

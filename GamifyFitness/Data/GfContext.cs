@@ -17,6 +17,7 @@ namespace GamifyFitness.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserLogin> Logins { get; set; }
+        public DbSet<FitnessUser> fitUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -31,10 +31,10 @@ namespace GamifyFitness.Data
                 
         }
 
-        public User getUserByEmail(String email)
+        public FitnessUser getUserByEmail(String email)
         {
             return _ctx
-                .Users
+                .fitUsers
                 .Where(o => o.Email == email)
                 .FirstOrDefault();
             
