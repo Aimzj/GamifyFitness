@@ -6,9 +6,9 @@ var obstacleMoveSpeed = 3;
 var score = 0;
 
 var Player = function (elementName) {
-    var position = [10, 0];
+    var position = [10, 80];
     var size = 54;
-    var maxJump = 162;
+    var maxJump = 242;
     var isJumping = false;
     var canJump = true;
     var isFalling = false;
@@ -20,6 +20,11 @@ var Player = function (elementName) {
         console.log("Jumping");
         position[1] += y;
 
+        element.css('left', position[0] + 'px');
+        element.css('bottom', position[1] + 'px');
+    }
+
+    var setup = function () {
         element.css('left', position[0] + 'px');
         element.css('bottom', position[1] + 'px');
     }
@@ -37,8 +42,8 @@ var Player = function (elementName) {
             isJumping = false;
         }
 
-        if (position[1] <= 0) {
-            position[1] = 0;
+        if (position[1] <= 80) {
+            position[1] = 80;
             canJump = true;
         }
     }
@@ -83,6 +88,7 @@ var Player = function (elementName) {
         update: update,
         toggleJumpDown: toggleJumpDown,
         toggleJumpUp: toggleJumpUp,
+        setup: setup,
         getPosition: function () { return position; },
         getSize: function () { return size; },
         isJumping: function () { return isJumping; },
@@ -92,11 +98,12 @@ var Player = function (elementName) {
 }
 
 var Obstacle = function (elementName) {
-    var position = [0, 0];
+    var position = [10, 75];
     var size = [54, 108];
     var paused = true;
 
     var element = $("#" + elementName);
+    var playArea = $("#PlayArea");
 
     var move = function (y) {
         if (paused) {
@@ -104,10 +111,15 @@ var Obstacle = function (elementName) {
         }
         position[0] += y;
 
-        if (position[0] >= innerWidth) {
-            position[0] = 0;
+        if (position[0] >= innerWidth / 2 - size[0] * 4) {
+            position[0] = 10;
         }
 
+        element.css('right', position[0] + 'px');
+        element.css('bottom', position[1] + 'px');
+    }
+
+    var setup = function () {
         element.css('right', position[0] + 'px');
         element.css('bottom', position[1] + 'px');
     }
@@ -116,9 +128,10 @@ var Obstacle = function (elementName) {
         move(t / obstacleMoveSpeed);
 
         var playerPosition = player.getPosition();
-        if ((position[0] < playerPosition[0]) && position[0] + size[0] > playerPosition[0]) {
+        if ((position[0] + (size[0] / 2) > playerPosition[0] - (player.size / 2)) && (position[0] - (size[0] / 2) < playerPosition[0] - (player.size / 2))) {
+            console.log("First obstacle hit!")
             if ((position[1] >= playerPosition) && (position[1] <= playerPosition[1] + player.getSize)) {
-                console.log("Hit obstacle!")
+                console.log("Second obstacle hit!")
                 pause();
                 player.pause();
             }
@@ -138,6 +151,7 @@ var Obstacle = function (elementName) {
         move: move,
         pause: pause,
         start: start,
+        setup: setup,
         getPosition: function () { return position; }
     }
 }
@@ -157,6 +171,8 @@ $(document).ready(function () {
     player.pause();
     obstacle = Obstacle('Obstacle');
     obstacle.pause();
+    player.setup();
+    obstacle.setup();
 
     requestAnimationFrame(update);
 });
