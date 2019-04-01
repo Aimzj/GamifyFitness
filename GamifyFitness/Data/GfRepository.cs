@@ -31,6 +31,15 @@ namespace GamifyFitness.Data
                 
         }
 
+        public User getUserByEmail(String email)
+        {
+            return _ctx
+                .Users
+                .Where(o => o.Email == email)
+                .FirstOrDefault();
+            
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges()>0;
@@ -39,6 +48,17 @@ namespace GamifyFitness.Data
         public void AddUser(object model)
         {
             _ctx.Add(model);
+        }
+
+        public void RemoveLoginUser(object model)
+        {
+            _ctx.Remove(model);
+        }
+
+        public UserLogin GetLoggedInUser()
+        {
+            var user = _ctx.Logins.ToList().FirstOrDefault();
+            return user;
         }
     }
 }

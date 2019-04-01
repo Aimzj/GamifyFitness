@@ -4,14 +4,16 @@ using GamifyFitness.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GamifyFitness.Migrations
 {
     [DbContext(typeof(GfContext))]
-    partial class GfContextModelSnapshot : ModelSnapshot
+    [Migration("20190401125124_UserAdditionalFields")]
+    partial class UserAdditionalFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,9 +48,7 @@ namespace GamifyFitness.Migrations
                         new
                         {
                             UserId = "1",
-                            Email = "constantineronan@gmail.com",
                             Friends = "Aimee,Riordan",
-                            Password = "Ronan123!",
                             age = 22,
                             currCaloriesStored = 10f,
                             lifetimeCalories = 100f,
@@ -58,14 +58,12 @@ namespace GamifyFitness.Migrations
 
             modelBuilder.Entity("GamifyFitness.Data.Entities.UserLogin", b =>
                 {
-                    b.Property<string>("emailExample")
+                    b.Property<string>("Email")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("ConcurrencyStamp");
-
-                    b.Property<string>("Email");
 
                     b.Property<bool>("EmailConfirmed");
 
@@ -94,7 +92,7 @@ namespace GamifyFitness.Migrations
 
                     b.Property<string>("UserName");
 
-                    b.HasKey("emailExample");
+                    b.HasKey("Email");
 
                     b.ToTable("Logins");
                 });

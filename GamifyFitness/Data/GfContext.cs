@@ -16,7 +16,7 @@ namespace GamifyFitness.Data
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<UserLogin> logins { get; set; }
+        public DbSet<UserLogin> Logins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,9 @@ namespace GamifyFitness.Data
                     age =22,
                     lifetimeCalories = 100,
                     currCaloriesStored = 10,
-                    Friends = "Aimee,Riordan"
+                    Friends = "Aimee,Riordan",
+                    Email = "constantineronan@gmail.com",
+                    Password = "Ronan123!"
                     
                 });
                 

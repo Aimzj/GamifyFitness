@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GamifyFitness.Models;
 using System.Data.SQLite;
+using GamifyFitness.Data;
+using GamifyFitness.Data.Entities;
 
 namespace GamifyFitness.Controllers
 {
     public class HomeController : Controller
     {
+        public IGfRepository _repo { get; }
+
+        public HomeController(IGfRepository repo)
+        {
+            _repo = repo;
+        }
+
         public IActionResult Login()
         {
             /*DatabaseSuite ds = new DatabaseSuite();
@@ -44,11 +53,40 @@ namespace GamifyFitness.Controllers
         {
             if (ModelState.IsValid)
             {
-                //login the user
+               Data.Entities.User user =_repo.getUserByEmail(model.Email);
+                var loggedInUser = _repo.GetLoggedInUser();
+                if (user != null && loggedInUser == null)
+                {
+                    var loginUser = new UserLogin()
+                    {
+                        Email = user.Email,
+                        Password = model.Password,
+                        UserName = user.UserId
 
+                        
+                    };
+                    _repo.AddUser(loginUser);
+                    _repo.SaveAll();
+                   // return Created($"/Home", loginUser);
+                }
+                else
+                {
+                    Console.WriteLine("ALREADY LOGGED IN ------------------------------------------------");
+                    return View();
+                }
+                    
+                //return NotFound();
+                
             }
             ModelState.Clear();
             return View();
+        }
+
+        public void LogOut()
+        {
+            var user = _repo.GetLoggedInUser();
+            _repo.RemoveLoginUser(user);
+
         }
 
         public IActionResult CreateUser(CreateUser model)

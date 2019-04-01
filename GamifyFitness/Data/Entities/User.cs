@@ -13,5 +13,7 @@ namespace GamifyFitness.Data.Entities
         public float lifetimeCalories { get; set; }
         public float currCaloriesStored { get; set; }
         public string Friends { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -10,7 +10,9 @@ namespace GamifyFitness.Data.Entities
     public class UserLogin : IdentityUser
     {
         [Key]
-        public string UserId { get; set; }
-        
+        [Required]
+        public string emailExample { get; set; }
+        [Required]
+        public string Password { get; set; }
     }
 }
