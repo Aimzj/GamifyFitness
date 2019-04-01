@@ -1,0 +1,15 @@
+body {
+    margin: 0px;
+    height: 100%;
+}
+
+#PlayArea {
+    height: 70%;
+    width: 50%;
+    border: 5%;
+    border-style: solid;
+    border-color: black;
+}
+
+
+

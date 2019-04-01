@@ -56,6 +56,12 @@ namespace GamifyFitness
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "game",
+                    template: "game/{id?}",
+                    defaults: new {controller = "Game", action = "Index"}
+                );
+                
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Login}/{id?}");
             });
