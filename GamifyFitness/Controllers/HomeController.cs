@@ -43,6 +43,7 @@ namespace GamifyFitness.Controllers
                 //login the user
 
             }
+            ModelState.Clear();
             return View();
         }
 
@@ -53,7 +54,7 @@ namespace GamifyFitness.Controllers
                 //create new user
 
             }
-
+            ModelState.Clear();
             return View();
         }
 
