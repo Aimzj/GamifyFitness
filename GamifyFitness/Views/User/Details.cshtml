@@ -1,31 +1,34 @@
-﻿
+﻿@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+
 @model GamifyFitness.Models.User
 
-@{ 
+@{
     ViewData["Title"] = "User";
 }
 
 <h1 align="center">User deets</h1>
 
-<hr/>
+<hr />
 
 <div>
 
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" align="center" >
 
-        <dt>
-            @Html.DisplayNameFor(Model => Model.name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(Model => Model.name)
-        </dd>
+        @foreach (var property in Model.GetType().GetProperties())
+        {
+            var title = property.Name;
+            var value = property.GetValue(Model);
+            Console.WriteLine(title+ "**********************************************************************************************");
 
-        <dt>
-            @Html.DisplayNameFor(Model => Model.age)
-        </dt>
-        <dd>
-            @Html.DisplayFor(Model => Model.age)
-        </dd>
+            <dt >
+                <p>@title</p>
+            </dt>
+            <dd>
+                <p>@value</p>
+            </dd>
+        }
+        
 
     </dl>
 
