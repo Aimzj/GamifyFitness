@@ -42,9 +42,15 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    height: 100%;
+    margin-bottom: 60px;
+    background-image: url(../../../../Resources/Background1.jpg);
+    background-size: 100% 100%;
+    /*background: no-repeat;*/
 }
+
+
 .footer {
   position: absolute;
   bottom: 0;
