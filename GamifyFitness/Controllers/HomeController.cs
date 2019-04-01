@@ -112,10 +112,15 @@ namespace GamifyFitness.Controllers
         public IActionResult Index()
         {
             loggedInUser = _repo.GetLoggedInUser();
+            
             if (loggedInUser == null)
                 return RedirectToAction("Login");
             else
-                return View();
+            {
+                var user = _repo.getUserByEmail(loggedInUser.Email);
+
+                return View(user);
+            }
         }
         public IActionResult DisplayFriends()
         {
