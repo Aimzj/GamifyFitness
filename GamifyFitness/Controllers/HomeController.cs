@@ -43,7 +43,6 @@ namespace GamifyFitness.Controllers
                 //login the user
 
             }
-            ModelState.Clear();
             return View();
         }
 
@@ -54,7 +53,7 @@ namespace GamifyFitness.Controllers
                 //create new user
 
             }
-            ModelState.Clear();
+
             return View();
         }
 
@@ -74,19 +73,5 @@ namespace GamifyFitness.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult DisplayFriends()
-        {
-            return View();
-        }
-
-        public IActionResult FindFriends()
-        {
-            return View();
-        }
-
-        public IActionResult Profile()
-        {
-            return View();
-        }
     }
 }
