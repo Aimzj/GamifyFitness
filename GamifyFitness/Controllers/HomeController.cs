@@ -13,6 +13,7 @@ namespace GamifyFitness.Controllers
 {
     public class HomeController : Controller
     {
+        private UserLogin loggedInUser;
         public IGfRepository _repo { get; }
 
         public HomeController(IGfRepository repo)
@@ -32,7 +33,7 @@ namespace GamifyFitness.Controllers
             if (ModelState.IsValid)
             {
                var user =_repo.getUserByEmail(model.Email);
-                var loggedInUser = _repo.GetLoggedInUser();
+                loggedInUser = _repo.GetLoggedInUser();
                 if (user != null && user.Password == model.Password)
                 {
                     var loginUser = new UserLogin()
@@ -71,11 +72,13 @@ namespace GamifyFitness.Controllers
             return View();
         }
 
-        public void LogOut()
+        public IActionResult Logout()
         {
-            var user = _repo.GetLoggedInUser();
-            _repo.RemoveLoginUser(user);
+           loggedInUser = _repo.GetLoggedInUser();
+            _repo.RemoveLoginUser(loggedInUser);
+            _repo.SaveAll();
 
+            return RedirectToAction("Login");
         }
 
         public IActionResult CreateUser()
@@ -108,19 +111,28 @@ namespace GamifyFitness.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            loggedInUser = _repo.GetLoggedInUser();
+            if (loggedInUser == null)
+                return RedirectToAction("Login");
+            else
+                return View();
         }
         public IActionResult DisplayFriends()
         {
-            return View();
+            loggedInUser = _repo.GetLoggedInUser();
+            if (loggedInUser == null)
+                return RedirectToAction("Login");
+            else
+                return View();
         }
-        public IActionResult FindFriends()
-        {
-            return View();
-        }
+
         public IActionResult Profile()
         {
-            return View();
+            loggedInUser = _repo.GetLoggedInUser();
+            if (loggedInUser == null)
+                return RedirectToAction("Login");
+            else
+                return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
