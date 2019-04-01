@@ -24,7 +24,15 @@ namespace GamifyFitness.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            loggedInUser = _repo.GetLoggedInUser();
+
+            if (loggedInUser != null)
+                return RedirectToAction("Index");
+            else
+            {
+                return View();
+            }
+            
         }
 
         [HttpPost]
