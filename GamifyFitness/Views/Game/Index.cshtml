@@ -3,26 +3,56 @@
 }
 
 <head>
-    <script><link rel="stylesheet" href="style.css"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/EndlessRunner.js"></script>
 </head>
+
+<style>
+    #PlayArea 
+    {
+        background-image: url(../../Resources/GameBackground.jpg);
+        background-size: 100% 100%;
+        height: 500px;
+        width: 900px;
+        border: 5px;
+        border-style: solid;
+        border-color: black;
+        overflow:visible;
+        margin-bottom: 10px;
+    }
+
+    .sprite
+    {
+        background-image: url(../../Resources/SpriteSheet.png);
+    }
+
+    #Player
+    {
+        position: absolute;
+        background-position: bottom left;
+        width: 54px;
+        height: 54px;
+    }
+
+    #Obstacle
+    {
+        position: absolute;
+        background-position: bottom right;
+        width: 54px;
+        height: 108px;
+    }
+</style>
 
 <div class="jumbotron text-center">
     <h1>Endless Runner</h1>
 </div>
 
-<body>
-    <div>
-        <p id="PlayArea">
-            <div id="Player"></div>
-            <div id="Obstacle1"></div>
-            <div id="Obstacle2"></div>
-            <div id="Obstacle3"></div>
-            <div id="Background"></div>
-            <div id="Score"></div>
-        </p>
-    </div>
-    <div class="col-sm-5 col-md-4 col-lg-3 offset-md-2 offset-lg-2">
-        <button class="button btn-block">Submit Score</button>
-        <button class="button btn-block">Back to account</button>
-    </div>
-</body>
+<div id="PlayArea" class="col-md-8 offset-md-2">
+    <div id="Player" class="sprite"></div>
+    <div id="Obstacle" class="sprite"></div>
+    <div id="Score"></div>
+</div>
+    
+<div class="col-sm-5 col-md-4 col-lg-3 offset-md-2 offset-lg-2">
+    <input  type ="submit" class="btn btn-success" value="Submit Score" />
+</div>
