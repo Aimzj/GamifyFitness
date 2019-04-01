@@ -1,0 +1,62 @@
+@model CreateUser
+@{
+    ViewData["Title"] = "Create New Account";
+}
+
+@section Scripts{
+    <Script src="~/lib/jquery-validation/dist/jquery.validate.js"></Script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<div class="jumbotron text-center">
+    <h1>GamiFit</h1>
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<form method="post">
+    <div class="card card-body bg-light">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="col-md-8 offset-md-2">
+            <div class="form-group">
+                <label asp-for="name">Name: </label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="surname">Surname: </label>
+                <input asp-for="surname" class="form-control" />
+                <span asp-validation-for="surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="age">Age: </label>
+                <input asp-for="age" class="form-control" />
+                <span asp-validation-for="age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username">Username: </label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email: </label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password: </label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Confirm Password: </label>
+                <input asp-for="ConfirmPassword" class="form-control" type="password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="col-sm-5 col-md-4 col-lg-3 offset-md-2 offset-lg-2">
+            <input type="submit" class="btn btn-success" value="Create Account">
+        </div>
+    </div>
+</form>
