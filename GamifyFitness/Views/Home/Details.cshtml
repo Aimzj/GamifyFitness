@@ -1,0 +1,26 @@
+@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+
+@model GamifyFitness.Models.User
+
+@{
+    ViewData["Title"] = "User";
+}
+
+<div class="row align-items-center no-gutters pt-2 bg-light">
+    <div class="offset-2 col-6">
+        <h3>@Html.DisplayFor(model=>model.name) @Html.DisplayFor(model=>model.surname)</h3>
+        <p>@Html.DisplayNameFor(model=>model.surname): @Html.DisplayFor(model=>model.surname)</p>
+        <p>@Html.DisplayNameFor(model=>model.age): @Html.DisplayFor(model=>model.age)</p>
+        <p>@Html.DisplayNameFor(model=>model.Email): @Html.DisplayFor(model=>model.Email)</p>
+    </div>
+    <div class="col-2">
+        <i class="fas fa-user-circle" style="font-size: 5em"></i>
+    </div>
+</div>
+<div class="row shadow-lg bg-primary no-gutters">
+    <div class="col-6 offset-2 pt-3 pb-3 text-white-50">
+        <p><i class="fas fa-running"></i> Current Calories: @Html.DisplayFor(model=>model.currCaloriesStored)</p>
+        <p><i class="fas fa-running"></i> Lifetime Calories: @Html.DisplayFor(model=>model.lifetimeCalories)</p>
+    </div>
+</div>

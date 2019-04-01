@@ -58,6 +58,24 @@ namespace GamifyFitness.Controllers
             return View();
         }
 
+        public IActionResult Details(String userid)
+        {
+            User user = new User()
+            {
+                name = "Rocky",
+                surname = "Balbao",
+                Username = "Bal432",
+                Email = "rocky@email.com",
+                UserId = "qwe13",
+                age = 20,
+                lifetimeCalories = 2000.00f,
+                currCaloriesStored = 154.52f,
+                Friends = null,
+                Password = null
+            };
+            return View(user);
+        }
+        
         public IActionResult Index()
         {
             return View();
