@@ -137,7 +137,11 @@ namespace GamifyFitness.Controllers
             if (loggedInUser == null)
                 return RedirectToAction("Login");
             else
-                return View();
+            {
+                var user = _repo.getUserByEmail(loggedInUser.Email);
+                return View(user);
+            }
+                
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

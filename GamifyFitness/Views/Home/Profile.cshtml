@@ -1,4 +1,8 @@
-﻿
+﻿@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+
+@model GamifyFitness.Data.Entities.FitnessUser
+
 @{
     ViewData["Title"] = "Profile";
 }
@@ -6,6 +10,34 @@
 <div class="jumbotron text-center">
     <h1> <p class="text-light">GamiFit</p> </h1>
     <h2> <p class="text-light">@ViewData["Title"] </p> </h2>
+</div>
+
+<hr />
+
+<div>
+
+    <dl class="dl-horizontal" align="center">
+
+        @foreach (var property in  Model.GetType().GetProperties())
+        {
+            var title = property.Name;
+            var value = property.GetValue(Model);
+            Console.WriteLine(title + "**********************************************************************************************");
+            if (title != "Password" && title != "ConfirmPassword")
+            {
+            <dt>
+                <p class="text-light">@title</p>
+            </dt>
+            <dd>
+                <p class="text-light">@value</p>
+            </dd>
+            }
+
+        }
+
+
+    </dl>
+
 </div>
 
 @*<h1>Profile</h1>*@
