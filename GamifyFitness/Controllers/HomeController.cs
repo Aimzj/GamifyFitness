@@ -34,7 +34,7 @@ namespace GamifyFitness.Controllers
             {
                var user =_repo.getUserByEmail(model.Email);
                 loggedInUser = _repo.GetLoggedInUser();
-                if (user != null )
+                if (user != null && user.Password == model.Password)
                 {
                     var loginUser = new UserLogin()
                     {
@@ -58,6 +58,11 @@ namespace GamifyFitness.Controllers
                 {
                     Console.WriteLine("You need to login ------------------------------------------------");
                     return RedirectToAction("CreateUser");
+                }
+                else if(user.Password != model.Password)
+                {
+                    ModelState.Clear();
+                    return View();
                 }
                     
                 //return NotFound();
