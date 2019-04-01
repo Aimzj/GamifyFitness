@@ -13,7 +13,7 @@ namespace GamifyFitness.Controllers
     {
         public IActionResult Login()
         {
-            DatabaseSuite ds = new DatabaseSuite();
+            /*DatabaseSuite ds = new DatabaseSuite();
             ds.CreateDatabase();
             ds.OpenConnection();
             ds.CreateTable();
@@ -30,7 +30,7 @@ namespace GamifyFitness.Controllers
 
             User user = new User("Ronan", 22);
             Console.WriteLine(user.UserId);
-            ds.CloseConnection();
+            ds.CloseConnection();*/
 
 
             return View();

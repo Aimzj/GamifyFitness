@@ -13,7 +13,7 @@ namespace GamifyFitness.Controllers
 
         public void CreateDatabase()
         {
-            SQLiteConnection.CreateFile("Database.sqlite");
+            //SQLiteConnection.CreateFile("Database.sqlite");
         }
 
         public void OpenConnection()

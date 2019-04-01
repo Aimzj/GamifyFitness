@@ -9,6 +9,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using GamifyFitness.Data;
+using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using System.Data.SQLite;
+using Microsoft.AspNetCore.Identity;
+using GamifyFitness.Data.Entities;
 
 namespace GamifyFitness
 {
@@ -24,12 +30,25 @@ namespace GamifyFitness
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           /* services.AddIdentity<UserLogin, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<GfContext>();*/
+
+            services.AddDbContext<GfContext>(cfg => {
+                cfg.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString"));
+            });
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddTransient<Seeder>();
+
+            services.AddScoped<IGfRepository,GfRepository>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -52,6 +71,7 @@ namespace GamifyFitness
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+           // app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
