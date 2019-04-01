@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -63,7 +63,7 @@ namespace GamifyFitness.Controllers
             User user = new User()
             {
                 name = "Rocky",
-                surname = "Balbao",
+                surname = "Balboa",
                 Username = "Bal432",
                 Email = "rocky@email.com",
                 UserId = "qwe13",
