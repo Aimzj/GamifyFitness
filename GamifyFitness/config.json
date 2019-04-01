@@ -1,0 +1,5 @@
+{
+    "ConnectionStrings": {
+        "DatabaseConnectionString":"server=(localdb)\\MSSQLLocalDB;Database=GFDatabase;Integrated Security=true;MultipleActiveResultSets=true;"
+    }
+}

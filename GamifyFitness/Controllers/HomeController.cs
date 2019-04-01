@@ -6,32 +6,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GamifyFitness.Models;
 using System.Data.SQLite;
+using GamifyFitness.Data;
+using GamifyFitness.Data.Entities;
 
 namespace GamifyFitness.Controllers
 {
     public class HomeController : Controller
     {
+        public IGfRepository _repo { get; }
+
+        public HomeController(IGfRepository repo)
+        {
+            _repo = repo;
+        }
+
+        [HttpGet]
         public IActionResult Login()
         {
-            //DatabaseSuite ds = new DatabaseSuite();
-            //ds.CreateDatabase();
-            //ds.OpenConnection();
-            //ds.CreateTable();
-            //ds.AddUser("1", "Ronan", 22, 123, 10, new List<string>() { "Aimee", "Riordan" });
-            //ds.AddUser("2", "Aimee", 21, 1230, 100, new List<string>() { "Ronan", "Riordan" });
-            //ds.ReadTable();
-            //Console.WriteLine("");
-            //ds.UpdateUserCalories("1", 10000, 2300);
-            //ds.UpdateUserFriends("2", new List<string>() { "Ronan", "Riordan", "MaryAnn", "Josh" });
-            //ds.ReadTable();
-            //SQLiteDataReader reader = ds.GetUserData("1");
-            //while(reader.Read())
-            //    Console.WriteLine(reader["name"] + "--------------------------------------------------------------------------------------------------");
-
-            //User user = new User("Ronan", 22);
-            //Console.WriteLine(user.UserId);
-            //ds.CloseConnection();
-
             return View();
         }
 
@@ -40,10 +31,39 @@ namespace GamifyFitness.Controllers
         {
             if (ModelState.IsValid)
             {
-                //login the user
+               Data.Entities.User user =_repo.getUserByEmail(model.Email);
+                var loggedInUser = _repo.GetLoggedInUser();
+                if (user != null && loggedInUser == null)
+                {
+                    var loginUser = new UserLogin()
+                    {
+                        Email = user.Email,
+                        Password = model.Password,
+                        UserName = user.UserId
 
+                        
+                    };
+                    _repo.AddUser(loginUser);
+                    _repo.SaveAll();
+                   // return Created($"/Home", loginUser);
+                }
+                else
+                {
+                    Console.WriteLine("ALREADY LOGGED IN ------------------------------------------------");
+                    return View();
+                }
+                    
+                //return NotFound();
+                
             }
             return View();
+        }
+
+        public void LogOut()
+        {
+            var user = _repo.GetLoggedInUser();
+            _repo.RemoveLoginUser(user);
+
         }
 
         public IActionResult CreateUser(CreateUser model)

@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GamifyFitness.Models;
 using System.Data.SQLite;
+using GamifyFitness.Data;
 
 namespace GamifyFitness.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Details(String userid)
+        private GfRepository _repo { get; }
+        public UserController(GfRepository repo)
+        {
+            _repo = repo;
+        }
+
+       /* public IActionResult Details(String userid)
         {
             if(userid == "")
             {
@@ -35,9 +42,6 @@ namespace GamifyFitness.Controllers
                     name = reader["name"].ToString();
                     age = (int)reader["age"];
                     userId = reader["userId"].ToString();
-                    lc = (int)reader["lifetimeCalories"];
-                    csc = (int)reader["currStoredCalories"];
-                    Friends = reader["friends"].ToString();
                 }
 
                 var user = new User(name, age, userId);
@@ -50,7 +54,7 @@ namespace GamifyFitness.Controllers
                 return NotFound();
             }
             
-        }
+        }*/
         /*public IActionResult Index()
         {
             return View();
@@ -66,6 +70,13 @@ namespace GamifyFitness.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }*/
+
+        public IActionResult displayArea()
+        {
+            var results = _repo.getAllUsers();
+
+            return View();
+        }
 
     }
 }
