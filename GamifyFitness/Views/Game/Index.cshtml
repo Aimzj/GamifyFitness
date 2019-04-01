@@ -3,6 +3,8 @@
 }
 
 <head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/EndlessRunner.js"></script>
 </head>
 
 <style>
@@ -26,7 +28,18 @@
 
     #Player
     {
+        position: absolute;
+        background-position: bottom left;
+        width: 54px;
+        height: 54px;
+    }
 
+    #Obstacle
+    {
+        position: absolute;
+        background-position: bottom right;
+        width: 54px;
+        height: 108px;
     }
 </style>
 
@@ -36,8 +49,7 @@
 
 <div id="PlayArea" class="col-md-8 offset-md-2">
     <div id="Player" class="sprite"></div>
-    <div id="Obstacle1" class="sprite"></div>
-    <div id="Obstacle2" class="sprite"></div>
+    <div id="Obstacle" class="sprite"></div>
     <div id="Score"></div>
 </div>
     

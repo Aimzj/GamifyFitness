@@ -6,11 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\SpriteSheet.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Resources\GameBackground.jpg" />
+    <Content Include="Resources\SpriteSheet.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\Resources\SpriteSheet.png" />
   </ItemGroup>
 
 
