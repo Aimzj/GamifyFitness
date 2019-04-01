@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using GamifyFitness.Data;
 using Microsoft.AspNetCore.Mvc;
 using GamifyFitness.Models;
 using GamifyFitness.Game;
@@ -12,10 +13,23 @@ namespace GamifyFitness.Controllers
     public class GameController : Controller
     {
         public GameInstance gameInstance {get; set;}
+        public IGfRepository _repo { get; }
+
+        public GameController(IGfRepository repo)
+        {
+            _repo = repo;
+        }
         public IActionResult Index()
         {
-            InitializeGame();
-            return View();
+            var loggedInUser = _repo.GetLoggedInUser();
+            if (loggedInUser == null)
+                return RedirectToAction("Login");
+            else
+            {
+                InitializeGame();
+                return View();
+            }
+            
         }
 
         public void InitializeGame()
